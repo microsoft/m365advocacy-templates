@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Waldek Mastykarz",
+  "classifications": ["Microsoft Copilot for Microsoft 365", "Microsoft 365", "Microsoft Graph", "Microsoft Graph connectors", "Console"],
+  "name": "Microsoft Graph connector template (basic)",
+  "identity": "M365Advocacy.GraphConnectors.Basic",
+  "shortName": "graph-connector",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "GraphConnector",
+  "preferNameDirectory": false,
+  "symbols": {
+    "connectionId": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "graphconnector",
+      "replaces": "ConnectionId"
+    },
+    "connectorName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "Graph connector",
+      "replaces": "ConnectorName"
+    },
+    "connectorDescription": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "Imports data from Contoso app",
+      "replaces": "ConnectorDescription"
+    }
+  }
+}
