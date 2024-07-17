@@ -28,6 +28,6 @@
     "@microsoft/microsoft-graph-client": "^3.0.7",
     "jwt-validate": "^0.5.0",
     "proxy-agent": "^6.4.0",
-    "undici": "^6.9.0"
+    "undici": "^6.11.1"
   }
 }
