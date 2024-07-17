@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://aka.ms/teams-toolkit/1.1.0/yaml.schema.json
+# Visit https://aka.ms/teamsfx-v5.0-guide for details on this file
+# Visit https://aka.ms/teamsfx-actions for details on actions
+version: 1.1.0
+
+environmentFolderPath: ./env
+
+provision:
+
+  - uses: teamsApp/create
+    with:
+      name: MsgExt.Search-${{APP_NAME_SUFFIX}}
+    writeToEnvironmentFile:
+      teamsAppId: TEAMS_APP_ID
+
+  - uses: botAadApp/create
+    with:
+      name: MsgExt.Search-${{APP_NAME_SUFFIX}}
+    writeToEnvironmentFile:
+      botId: BOT_ID
+      botPassword: SECRET_BOT_PASSWORD
+
+  - uses: arm/deploy 
+    with:
+      subscriptionId: ${{AZURE_SUBSCRIPTION_ID}}
+      resourceGroupName: ${{AZURE_RESOURCE_GROUP_NAME}}
+      templates:
+        - path: ./infra/azure.bicep
+          parameters: ./infra/azure.parameters.json
+          deploymentName: Create-resources-for-me
+      bicepCliVersion: v0.9.1
+
+  - uses: teamsApp/validateManifest
+    with:
+      manifestPath: ./appPackage/manifest.json
+
+  - uses: teamsApp/zipAppPackage
+    with:
+      manifestPath: ./appPackage/manifest.json
+      outputZipPath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+      outputJsonPath: ./appPackage/build/manifest.${{TEAMSFX_ENV}}.json
+
+  - uses: teamsApp/validateAppPackage
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+
+  - uses: teamsApp/update
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+
+  - uses: teamsApp/extendToM365
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+    writeToEnvironmentFile:
+      titleId: M365_TITLE_ID
+      appId: M365_APP_ID
+
+deploy:
+  - uses: cli/runDotnetCommand
+    with:
+      args: publish --configuration Release MsgExt.Search.csproj
+      workingDirectory: ../MsgExt.Search
+
+  - uses: azureAppService/zipDeploy
+    with:
+      artifactFolder: bin/Release/net8.0/publish
+      resourceId: ${{BOT_AZURE_APP_SERVICE_RESOURCE_ID}}
+      workingDirectory: ../MsgExt.Search

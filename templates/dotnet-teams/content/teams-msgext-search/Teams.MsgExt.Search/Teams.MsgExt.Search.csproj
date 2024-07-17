@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <PackageId>Teams.MsgExt.Search</PackageId>
+    <PackageVersion>1.0</PackageVersion>
+    <Title>Teams message extension with search command</Title>
+    <Authors>Microsoft 365 Advocacy</Authors>
+    <Description>A template project for Teams Toolkit</Description>
+    <PackageTags>microsoft teams, message extension, teams toolkit</PackageTags>
+    <PackageProjectUrl>https://github.com/microsoft/m365advocacy-templates</PackageProjectUrl>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageType>Template</PackageType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.21.1" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.21.1" />
+    <PackageReference Include="AdaptiveCards" Version="2.7.3" />
+    <PackageReference Include="AdaptiveCards.Templating" Version="1.4.0" />
+  </ItemGroup>
+
+</Project>
