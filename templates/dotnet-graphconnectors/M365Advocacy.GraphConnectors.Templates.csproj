@@ -7,7 +7,7 @@
     <Authors>Microsoft 365 Developer Advocacy</Authors>
     <Description>Templates to use for creating Microsoft Graph connectors. Using Graph connectors you can import external data into Microsoft 365 and Microsoft Search. Ingested content is available to Microsoft Copilot for Microsoft 365, Microsoft Search and other Microsoft 365 services.</Description>
     <PackageTags>dotnet-new;templates;microsoft-365;microsoft-copilot-for-microsoft-365;microsoft-graph;microsoft-graph-connectors</PackageTags>
-    <PackageProjectUrl>https://github.com/microsoft/dotnet-graphconnectors-templates</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/microsoft/m365advocacy-templates</PackageProjectUrl>
 
     <PackageType>Template</PackageType>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,6 +17,7 @@
     <NoWarn>$(NoWarn);NU5128;NU5110;NU5111</NoWarn>
     <NoDefaultExcludes>true</NoDefaultExcludes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -34,6 +35,7 @@
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

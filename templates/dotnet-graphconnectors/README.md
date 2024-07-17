@@ -20,24 +20,3 @@ Option|Description|Default value
 `connectionId`|This ID must be unique in your Microsoft 365 tenant and be between 3 and 32 characters long.|`graphconnector`
 `connectorName`|Microsoft 365 uses this name in the list of connectors in the Microsoft 365 admin center. The setup script also uses this name to create a new Microsoft Entra app registration.|`Graph connector`
 `connectorDescription`|This description helps Microsoft 365 administrators understand the purpose of your Graph connector in the Microsoft 365 admin center.|`Imports data from Contoso app`
-
-## Test locally
-
-To test your connector locally, you need to run the following commands:
-
-```bash
-# build the project
-dotnet pack
-# install the local template
-dotnet new install ./bin/Release/M365Advocacy.GraphConnectors.Templates.0.1.0.nupkg
-# create a new project
-dotnet new graph-connector -n MyGraphConnector
-# see available template options
-dotnet new graph-connector -h
-# uninstall the local template
-dotnet new uninstall M365Advocacy.GraphConnectors.Templates
-```
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
