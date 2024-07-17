@@ -8,7 +8,7 @@
     <Description>Templates to use for creating Microsoft Teams apps.</Description>
     <PackageTags>dotnet-new;templates;microsoft-365;microsoft-copilot-for-microsoft-365;microsoft-teams;teams-toolkit</PackageTags>
     <PackageProjectUrl>https://github.com/microsoft/m365advocacy-templates</PackageProjectUrl>
-    
+
     <PackageType>Template</PackageType>
     <TargetFramework>net8.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
