@@ -63,7 +63,7 @@ If you want to simulate Microsoft Graph API responses using Dev Proxy:
 │   ├── createConnection.ts
 │   ├── graphClient.ts
 │   └── loadContent.ts
-└── tsconfig.json (TypeScript configuration)
+└── tsconfig.json
 ```
 
 ### .devproxy/graph-connector-mocks.json

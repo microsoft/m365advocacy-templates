@@ -1,0 +1,7 @@
+export const resultLayout = {
+  "type": "AdaptiveCard",
+  "version": "1.3",
+  "body": [],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "$data": {}
+};

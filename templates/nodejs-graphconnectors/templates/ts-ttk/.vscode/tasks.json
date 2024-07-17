@@ -1,0 +1,161 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "TTK",
+      "dependsOn": [
+        "npm install",
+        "Ensure env files",
+        "Ensure DevTunnel",
+        "Start Azurite emulator",
+        "Provision",
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Simulated",
+      "dependsOn": [
+        "npm install",
+        "Ensure env files",
+        "Start Azurite emulator",
+        "Provision (sim)"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "type": "shell",
+      "label": "npm install",
+      "command": "npm install --no-audit"
+    },
+    {
+      "type": "shell",
+      "label": "Run watch",
+      "command": "npm run watch",
+      "isBackground": true,
+      "problemMatcher": "$tsc-watch"
+    },
+    {
+      "type": "func",
+      "label": "func: host start",
+      "command": "host start",
+      "problemMatcher": "$func-node-watch",
+      "isBackground": true,
+      "dependsOn": [
+        "Run watch"
+      ]
+    },
+    {
+      "label": "Ensure DevTunnel",
+      "type": "shell",
+      "isBackground": true,
+      "windows": {
+        "command": ".\\scripts\\devtunnel.ps1"
+      },
+      "osx": {
+        "command": "./scripts/devtunnel.sh"
+      },
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^.*$",
+            "file": 0,
+            "location": 1,
+            "message": 2
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "No TUNNEL_ID found. Creating tunnel...|Connecting to host tunnel relay",
+          "endsPattern": "Ready to accept connections for tunnel"
+        }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn":[
+        "Ensure env files"
+      ]
+    },
+    {
+      "label": "Ensure env files",
+      "type": "shell",
+      "command": "node ./scripts/env.js",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^.*$",
+            "file": 0,
+            "location": 1,
+            "message": 2
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Ensuring env files exist...",
+          "endsPattern": "Done!"
+        }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+    },
+    {
+      "label": "Start Azurite emulator",
+      "type": "shell",
+      "command": "npm run storage",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": [
+          {
+            "regexp": "^.*$",
+            "file": 0,
+            "location": 1,
+            "message": 2
+          }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Azurite",
+          "endsPattern": "successfully listening"
+        }
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Provision",
+      "type": "teamsfx",
+      "command": "provision",
+      "args": {
+        "env": "local"
+      },
+      "dependsOn":[
+        "Ensure DevTunnel"
+      ]
+    },
+    {
+      "label": "Provision (sim)",
+      "type": "teamsfx",
+      "command": "provision",
+      "args": {
+        "env": "testtool"
+      }
+    },
+    {
+      "label": "Terminate All Tasks",
+      "command": "echo ${input:terminate}",
+      "type": "shell",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "terminateAll"
+    }
+  ]
+}

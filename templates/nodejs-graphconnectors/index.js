@@ -1,12 +1,13 @@
 #! /usr/bin/env node
 
-import fs from 'fs-extra';
-import path from 'path';
-import url from 'url';
-import inquirer from 'inquirer';
-import Handlebars from 'handlebars';
-import { uniqueNamesGenerator, adjectives, animals } from 'unique-names-generator';
 import createDebug from 'debug';
+import fs from 'fs-extra';
+import Handlebars from 'handlebars';
+import inquirer from 'inquirer';
+import { isText } from 'istextorbinary';
+import path from 'path';
+import { adjectives, animals, uniqueNamesGenerator } from 'unique-names-generator';
+import url from 'url';
 const debug = createDebug('create-graph-connector');
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -56,7 +57,8 @@ async function promptUser() {
       default: 'ts',
       message: 'Template',
       choices: [
-        { name: 'TypeScript (basic)', value: 'ts' }
+        { name: 'TypeScript (basic)', value: 'ts' },
+        { name: 'TypeScript (Teams Toolkit)', value: 'ts-ttk' }
       ],
       validate: value => value.length > 0
     }
@@ -81,14 +83,14 @@ async function createProject(answers) {
     const filePath = path.join(targetDir, fileOrFolder);
     const fileStats = await fs.stat(filePath);
 
-    if (fileStats.isFile()) {
+    if (fileStats.isFile() && isText(filePath, fs.readFileSync(filePath))) {
       debug(`Templating file ${fileOrFolder}`);
       const fileContents = await fs.readFile(filePath, 'utf8');
       const renderedContents = Handlebars.compile(fileContents)(answers);
       await fs.writeFile(filePath, renderedContents);
     }
     else {
-      debug(`${fileOrFolder} is a folder. Skipping`);
+      debug(`${fileOrFolder} is either a folder or a binary. Skipping`);
     }
   }
 
