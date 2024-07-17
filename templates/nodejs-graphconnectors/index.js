@@ -92,6 +92,12 @@ async function createProject(answers) {
     else {
       debug(`${fileOrFolder} is either a folder or a binary. Skipping`);
     }
+
+    if (fileOrFolder.endsWith('_gitignore')) {
+      debug(`Renaming ${fileOrFolder} to .gitignore`);
+      const newFilePath = path.join(targetDir, fileOrFolder.replace('_gitignore', '.gitignore'));
+      await fs.move(filePath, newFilePath);
+    }
   }
 
   console.log('');
