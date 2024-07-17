@@ -1,0 +1,58 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Garry Trinder",
+    "classifications": [
+        "Microsoft Copilot for Microsoft 365",
+        "Microsoft 365",
+        "Microsoft Teams",
+        "Teams Toolkit",
+        "Message Extension",
+        "Web"
+    ],
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "name": "Teams message extension with search command",
+    "identity": "M365Advocacy.Teams.MsgExt.Search",
+    "shortName": "teams-msgext-search",
+    "sourceName": "Teams.MsgExt.Search",
+    "preferNameDirectory": true,
+    "sources": [
+        {
+            "modifiers": [
+                {
+                    "include": [
+                        "**/Teams.MsgExt.Search.slnLaunch.user",
+                        "**/TeamsApp.ttkproj.user"
+                    ]
+                }
+            ]
+        }
+    ],
+    "constraints": {
+        "dotnet-cli": {
+            "type": "host",
+            "args": [
+                {
+                    "hostname": "dotnetcli"
+                }
+            ]
+        }
+    },
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "powershell",
+                "args": "-NoProfile -ExecutionPolicy Bypass -File scripts\\post-create.ps1"
+            },
+            "manualInstructions": [
+                {
+                    "text": "Run the post-create.ps1 script to configure multiple startup projects."
+                }
+            ],
+            "continueOnError": false
+        }
+    ]
+}
