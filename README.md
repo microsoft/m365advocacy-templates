@@ -6,6 +6,7 @@ Platform|Project templates|Description|Folder
 ---|---|---|---
 .NET|Microsoft Graph connectors|Templates to create a custom Microsoft Graph connector running on .NET.|[dotnet-graphconnectors](./templates/dotnet-graphconnectors/README.md)
 Node.js|Microsoft Graph connectors|Templates to create a custom Microsoft Graph connector running on Node.js|[nodejs-graphconnectors](./templates/nodejs-graphconnectors/README.md)
+.NET|Microsoft Teams apps|Templates to create custom Microsoft Teams apps running on .NET|[dotnet-teams](./templates/dotnet-teams/README.md)
 
 If you have any questions or feedback about these templates, please file an issue.
 
