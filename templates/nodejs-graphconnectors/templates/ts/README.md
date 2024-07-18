@@ -21,7 +21,7 @@ When developing the Graph connector, you can use [Dev Proxy](https://aka.ms/devp
     - Complete schema definition
     - Define URL to item resolvers (optional but recommended)
   - In `loadContent.ts`:
-    - Implement the `loadContent` function to load content to import
+    - Implement the `extract` function to load content to import
     - Implement the `getDocId` function to generate a unique ID for each document
     - Update the `transform` function that convert documents from the external system into Microsoft Graph external items, with the schema you defined previously
 - Build project: `npm run build`
