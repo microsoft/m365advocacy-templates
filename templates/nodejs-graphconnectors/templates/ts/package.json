@@ -8,9 +8,9 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "start:createConnection": "node dist/createConnection.js",
-    "start:createConnection:proxy": "http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/createConnection.js",
+    "start:createConnection:proxy": "cross-env http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/createConnection.js",
     "start:loadContent": "node dist/loadContent.js",
-    "start:loadContent:proxy": "http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/loadContent.js",
+    "start:loadContent:proxy": "cross-env http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/loadContent.js",
     "watch": "tsc -w"
   },
   "keywords": [],
@@ -20,7 +20,8 @@
     "@microsoft/microsoft-graph-types": "^2.40.0",
     "@types/node": "^20.14.10",
     "rimraf": "^6.0.1",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@azure/identity": "^4.3.0",
