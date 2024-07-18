@@ -5,12 +5,12 @@ Create a new [Microsoft Teams app](https://learn.microsoft.com/MicrosoftTeams/pl
 ## Usage
 
 ```bash
-# install the template
+# install the templates
 dotnet new install M365Advocacy.Teams.Templates
 # create a new project
 dotnet new teams-msgext-search [options] [template options]
+# view template options
+dotnet new teams-msgext-search -?
+# uninstall templates
+dotnet new uninstall M365Advocacy.Teams.Templates
 ```
-
-### Template options
-
-None

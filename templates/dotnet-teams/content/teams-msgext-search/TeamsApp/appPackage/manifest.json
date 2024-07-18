@@ -18,8 +18,8 @@
     "full": "${{APP_DISPLAY_NAME}}"
   },
   "description": {
-    "short": "Short description of ${{APP_DISPLAY_NAME}}",
-    "full": "Full description of ${{APP_DISPLAY_NAME}}"
+    "short": "(appDescriptionShort)",
+    "full": "(appDescriptionFull)"
   },
   "accentColor": "#FFFFFF",
   "bots": [],

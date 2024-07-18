@@ -18,6 +18,32 @@
     "shortName": "teams-msgext-search",
     "sourceName": "Teams.MsgExt.Search",
     "preferNameDirectory": true,
+    "symbols": {
+        "appInternalName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "teams-msgext-search",
+            "replaces": "(appInternalName)"
+        },
+        "appDisplayName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Teams MsgExt Search",
+            "replaces": "(appDisplayName)"
+        },
+        "appDescriptionShort": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Teams message extension",
+            "replaces": "(appDescriptionShort)"
+        },
+        "appDescriptionFull": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Teams message extension with search command",
+            "replaces": "(appDescriptionFull)"
+        }
+    },
     "sources": [
         {
             "modifiers": [
