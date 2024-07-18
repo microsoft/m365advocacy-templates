@@ -9,13 +9,13 @@ provision:
 
   - uses: teamsApp/create
     with:
-      name: MsgExt.Search-${{APP_NAME_SUFFIX}}
+      name: Teams.MsgExt.Search-${{APP_NAME_SUFFIX}}
     writeToEnvironmentFile:
       teamsAppId: TEAMS_APP_ID
 
   - uses: botAadApp/create
     with:
-      name: MsgExt.Search-${{APP_NAME_SUFFIX}}
+      name: Teams.MsgExt.Search-${{APP_NAME_SUFFIX}}
     writeToEnvironmentFile:
       botId: BOT_ID
       botPassword: SECRET_BOT_PASSWORD
@@ -58,11 +58,11 @@ provision:
 deploy:
   - uses: cli/runDotnetCommand
     with:
-      args: publish --configuration Release MsgExt.Search.csproj
-      workingDirectory: ../MsgExt.Search
+      args: publish --configuration Release Teams.MsgExt.Search.csproj
+      workingDirectory: ../Teams.MsgExt.Search
 
   - uses: azureAppService/zipDeploy
     with:
       artifactFolder: bin/Release/net8.0/publish
       resourceId: ${{BOT_AZURE_APP_SERVICE_RESOURCE_ID}}
-      workingDirectory: ../MsgExt.Search
+      workingDirectory: ../Teams.MsgExt.Search

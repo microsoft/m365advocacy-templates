@@ -28,19 +28,19 @@
       "botId": "${{BOT_ID}}",
       "commands": [
         {
-          "id": "searchQuery",
+          "id": "(commandId)",
           "context": [
             "compose",
             "commandBox"
           ],
-          "description": "Test command to run query",
-          "title": "Search",
+          "description": "(commandDescription)",
+          "title": "(commandTitle)",
           "type": "query",
           "parameters": [
             {
-              "name": "searchQuery",
-              "title": "Search Query",
-              "description": "Your search query",
+              "name": "(parameterName)",
+              "title": "(parameterTitle)",
+              "description": "(parameterDescription)",
               "inputType": "text"
             }
           ]
@@ -54,6 +54,10 @@
     "identity",
     "messageTeamMembers"
   ],
+  "webApplicationInfo": {
+    "id": "${{BOT_ID}}",
+    "resource": "api://${{BOT_DOMAIN}}/botid-${{BOT_ID}}"
+  },
   "validDomains": [
     "${{BOT_DOMAIN}}"
   ]

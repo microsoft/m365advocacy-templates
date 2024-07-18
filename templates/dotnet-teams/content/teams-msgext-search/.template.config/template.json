@@ -42,6 +42,42 @@
             "datatype": "string",
             "defaultValue": "Teams message extension with search command",
             "replaces": "(appDescriptionFull)"
+        },
+        "commandId": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "searchQuery",
+            "replaces": "(commandId)"
+        },
+        "commandDescription": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Test command to run query",
+            "replaces": "(commandDescription)"
+        },
+        "commandTitle":{
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Search",
+            "replaces": "(commandTitle)"
+        },
+        "parameterName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "searchQuery",
+            "replaces": "(parameterName)"
+        },
+        "parameterTitle": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Search Query",
+            "replaces": "(parameterTitle)"
+        },
+        "parameterDescription": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "Your search query",
+            "replaces": "(parameterDescription)"
         }
     },
     "sources": [

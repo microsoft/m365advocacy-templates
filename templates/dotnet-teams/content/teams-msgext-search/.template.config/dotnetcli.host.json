@@ -19,6 +19,36 @@
         "longName": "full-description",
         "shortName": "fd",
         "description": "The full description of the app."
+      },
+      "commandId": {
+        "longName": "command-id",
+        "shortName": "cid",
+        "description": "The ID of the command."
+      },
+      "commandDescription": {
+        "longName": "command-description",
+        "shortName": "cd",
+        "description": "The description of the command."
+      },
+      "commandTitle": {
+        "longName": "command-title",
+        "shortName": "ct",
+        "description": "The title of the command."
+      },
+      "parameterName": {
+        "longName": "parameter-name",
+        "shortName": "pn",
+        "description": "The name of the parameter."
+      },
+      "parameterTitle": {
+        "longName": "parameter-title",
+        "shortName": "pt",
+        "description": "The title of the parameter."
+      },
+      "parameterDescription": {
+        "longName": "parameter-description",
+        "shortName": "pd",
+        "description": "The description of the parameter."
       }
     }
   }
