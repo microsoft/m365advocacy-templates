@@ -24,6 +24,8 @@ When developing the Graph connector, you can use [Dev Proxy](https://aka.ms/devp
     - Implement the `extract` function to load content to import
     - Implement the `getDocId` function to generate a unique ID for each document
     - Update the `transform` function that convert documents from the external system into Microsoft Graph external items, with the schema you defined previously
+  - In `resultLayout.json`:
+    - Update the Adaptive Card layout to match the schema you defined previously
 - Build project: `npm run build`
 - Create connection: `npm run start:createConnection`
 - Load content: `npm run start:loadContent`
