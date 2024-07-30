@@ -8,9 +8,9 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "start:createConnection": "node dist/createConnection.js",
-    "start:createConnection:proxy": "http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/createConnection.js",
+    "start:createConnection:proxy": "env-cmd -f ./.env.proxy node dist/createConnection.js",
     "start:loadContent": "node dist/loadContent.js",
-    "start:loadContent:proxy": "http_proxy=http://127.0.0.1:8000 NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_NO_WARNINGS=1 node dist/loadContent.js",
+    "start:loadContent:proxy": "env-cmd -f ./.env.proxy node dist/loadContent.js",
     "watch": "tsc -w"
   },
   "keywords": [],
@@ -25,6 +25,7 @@
   "dependencies": {
     "@azure/identity": "^4.3.0",
     "@microsoft/microsoft-graph-client": "^3.0.7",
-    "undici": "^6.19.2"
+    "undici": "^6.19.2",
+    "env-cmd": "^10.1.0"
   }
 }
