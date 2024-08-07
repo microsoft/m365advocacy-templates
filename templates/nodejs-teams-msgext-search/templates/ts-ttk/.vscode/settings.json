@@ -1,0 +1,11 @@
+{
+    "debug.onTaskErrors": "abort",
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/entra.*.json"
+            ],
+            "schema": {}
+        }
+    ]
+}

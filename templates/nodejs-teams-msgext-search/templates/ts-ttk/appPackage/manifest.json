@@ -1,0 +1,64 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.17",
+    "version": "1.0.0",
+    "id": "$\{{TEAMS_APP_ID}}",
+    "developer": {
+      "name": "Teams App, Inc.",
+      "websiteUrl": "https://www.example.com",
+      "privacyUrl": "https://www.example.com/privacy",
+      "termsOfUseUrl": "https://www.example.com/termofuse"
+    },
+    "icons": {
+      "color": "color.png",
+      "outline": "outline.png"
+    },
+    "name": {
+      "short": "$\{{APP_DISPLAY_NAME}}",
+      "full": "$\{{APP_DISPLAY_NAME}}"
+    },
+    "description": {
+      "short": "{{appDescriptionShort}}",
+      "full": "{{appDescriptionFull}}"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [],
+    "composeExtensions": [
+      {
+        "botId": "$\{{BOT_ID}}",
+        "commands": [
+          {
+            "id": "{{commandId}}",
+            "context": [
+              "compose",
+              "commandBox"
+            ],
+            "description": "{{commandDescription}}",
+            "title": "{{commandTitle}}",
+            "type": "query",
+            "parameters": [
+              {
+                "name": "{{parameterName}}",
+                "title": "{{parameterTitle}}",
+                "description": "{{parameterDescription}}",
+                "inputType": "text"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "configurableTabs": [],
+    "staticTabs": [],
+    "permissions": [
+      "identity",
+      "messageTeamMembers"
+    ],
+    "webApplicationInfo": {
+      "id": "$\{{BOT_ID}}",
+      "resource": "api://$\{{BOT_DOMAIN}}/botid-$\{{BOT_ID}}"
+    },
+    "validDomains": [
+      "$\{{BOT_DOMAIN}}"
+    ]
+  }

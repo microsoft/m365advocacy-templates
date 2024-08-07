@@ -1,0 +1,31 @@
+{
+  "name": "create-teams-msgext-search",
+  "version": "0.1.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/m365advocacy-templates.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microsoft/m365advocacy-templates/issues"
+  },
+  "keywords": [
+    "Microsoft Copilot for Microsoft 365",
+    "Microsoft 365",
+    "Microsoft Teams",
+    "Microsoft Outlook"
+  ],
+  "author": "Microsoft 365 Developer Advocacy",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.3.5",
+    "fs-extra": "^11.2.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^10.0.1",
+    "istextorbinary": "^9.5.0",
+    "unique-names-generator": "^4.7.1"
+  }
+}
