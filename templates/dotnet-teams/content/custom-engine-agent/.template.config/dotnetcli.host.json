@@ -1,0 +1,24 @@
+{
+  "symbolInfo": {
+    "appInternalName": {
+      "longName": "internal-name",
+      "shortName": "in",
+      "description": "The internal name of the app."
+    },
+    "appDisplayName": {
+      "longName": "display-name",
+      "shortName": "dn",
+      "description": "The display name of the app."
+    },
+    "appDescriptionShort": {
+      "longName": "short-description",
+      "shortName": "sd",
+      "description": "The short description of the app."
+    },
+    "appDescriptionFull": {
+      "longName": "full-description",
+      "shortName": "fd",
+      "description": "The full description of the app."
+    }
+  }
+}

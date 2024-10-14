@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=https://aka.ms/teams-toolkit/v1.5/yaml.schema.json
+# Visit https://aka.ms/teamsfx-v5.0-guide for details on this file
+# Visit https://aka.ms/teamsfx-actions for details on actions
+version: v1.5
+
+provision:
+
+  - uses: teamsApp/create
+    with:
+      name: ${{APP_INTERNAL_NAME}}-${{TEAMSFX_ENV}}
+    writeToEnvironmentFile:
+      teamsAppId: TEAMS_APP_ID
+
+  - uses: aadApp/create
+    with:
+      name: bot-${{APP_INTERNAL_NAME}}-${{TEAMSFX_ENV}}
+      generateClientSecret: true
+      signInAudience: AzureADMultipleOrgs
+    writeToEnvironmentFile:
+      clientId: BOT_ID
+      clientSecret: SECRET_BOT_PASSWORD
+      objectId: ENTRA_APP_OBJECT_ID
+      tenantId: ENTRA_APP_TENANT_ID
+      authority: ENTRA_APP_OAUTH_AUTHORITY
+      authorityHost: ENTRA_APP_OAUTH_AUTHORITY_HOST
+
+  - uses: aadApp/update
+    with:
+      manifestPath: ./infra/entra/bot.manifest.json
+      outputFilePath : ./infra/entra/build/bot.manifest.${{TEAMSFX_ENV}}.json
+
+  - uses: arm/deploy
+    with:
+      subscriptionId: ${{AZURE_SUBSCRIPTION_ID}}
+      resourceGroupName: ${{AZURE_RESOURCE_GROUP_NAME}}
+      templates:
+        - path: ./infra/azure.local.bicep 
+          parameters: ./infra/azure.parameters.local.json
+          deploymentName: Create-resources-for-${{APP_INTERNAL_NAME}}-${{TEAMSFX_ENV}}
+      bicepCliVersion: v0.9.1
+
+  - uses: file/createOrUpdateJsonFile
+    with:
+      target: ../Custom.Engine.Agent/appsettings.Development.json
+      content:
+        BOT_ID: ${{BOT_ID}}
+        BOT_PASSWORD: ${{SECRET_BOT_PASSWORD}}
+        AZURE_OPENAI_DEPLOYMENT_NAME: ${{APP_INTERNAL_NAME}}
+        AZURE_OPENAI_KEY: ${{SECRET_AZURE_OPENAI_API_KEY}}
+        AZURE_OPENAI_ENDPOINT: ${{AZURE_OPENAI_ENDPOINT}}
+        AZURE_STORAGE_CONNECTION_STRING: UseDevelopmentStorage=true
+        AZURE_STORAGE_BLOB_CONTAINER_NAME: state
+
+  - uses: teamsApp/validateManifest
+    with:
+      manifestPath: ./appPackage/manifest.json
+
+  - uses: teamsApp/zipAppPackage
+    with:
+      manifestPath: ./appPackage/manifest.json
+      outputZipPath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+      outputJsonPath: ./appPackage/build/manifest.${{TEAMSFX_ENV}}.json
+
+  - uses: teamsApp/validateAppPackage
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+
+  - uses: teamsApp/update
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
