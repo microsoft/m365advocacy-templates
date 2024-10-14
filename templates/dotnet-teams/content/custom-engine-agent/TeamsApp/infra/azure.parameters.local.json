@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceBaseName": {
+      "value": "bot-${{RESOURCE_SUFFIX}}-${{TEAMSFX_ENV}}"
+    },
+    "botEntraAppClientId": {
+      "value": "${{BOT_ID}}"
+    },
+    "botDisplayName": {
+      "value": "${{APP_DISPLAY_NAME}}"
+    },
+    "botAppDomain": {
+      "value": "${{BOT_DOMAIN}}"
+    },
+    "modelDeploymentName": {
+      "value": "${{APP_INTERNAL_NAME}}"
+    },
+    "modelName": {
+      "value": "gpt-35-turbo"
+    },
+    "modelVersion": {
+      "value": "0301"
+    }
+  }
+}
