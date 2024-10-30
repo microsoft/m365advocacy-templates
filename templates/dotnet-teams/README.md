@@ -35,6 +35,8 @@ dotnet new custom-engine-agent --name "Custom.Engine.Agent" `
     --display-name "Custom engine agent" `
     --short-description "Custom engine agent" `
     --full-description "Custom engine agent powered by Teams AI library" `
+    --model-name "gpt-4" `
+    --model-version "1106-Preview" `
     --allow-scripts Yes
 ```
 
