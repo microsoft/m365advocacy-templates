@@ -19,6 +19,16 @@
       "longName": "full-description",
       "shortName": "fd",
       "description": "The full description of the app."
+    },
+    "modelName": {
+      "longName": "model-name",
+      "shortName": "mn",
+      "description": "The name of the model."
+    },
+    "modelVersion": {
+      "longName": "model-version",
+      "shortName": "mv",
+      "description": "The version of the model."
     }
   }
 }

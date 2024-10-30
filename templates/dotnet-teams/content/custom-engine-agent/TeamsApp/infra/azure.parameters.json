@@ -21,10 +21,10 @@
       "value": "${{APP_INTERNAL_NAME}}"
     },
     "modelName": {
-      "value": "gpt-35-turbo"
+      "value": "(modelName)"
     },
     "modelVersion": {
-      "value": "0301"
+      "value": "(modelVersion)"
     }
   }
 }

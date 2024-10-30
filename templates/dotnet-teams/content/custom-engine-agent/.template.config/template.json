@@ -45,6 +45,18 @@
             "datatype": "string",
             "defaultValue": "Custom engine agent powered by Teams AI library",
             "replaces": "(appDescriptionFull)"
+        },
+        "modelName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "gpt-4",
+            "replaces": "(modelName)"
+        },
+        "modelVersion": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "1106-Preview",
+            "replaces": "(modelVersion)"
         }
     },
     "sources": [
