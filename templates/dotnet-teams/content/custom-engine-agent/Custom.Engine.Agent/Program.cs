@@ -25,9 +25,9 @@ builder.Configuration["MicrosoftAppPassword"] = config.BOT_PASSWORD;
 builder.Services.AddSingleton<BotFrameworkAuthentication, ConfigurationBotFrameworkAuthentication>();
 
 // Create the Cloud Adapter with error handling enabled.
-builder.Services.AddSingleton<CloudAdapter, AdapterWithErrorHandler>();
-builder.Services.AddSingleton<IBotFrameworkHttpAdapter>(sp => sp.GetService<CloudAdapter>());
-builder.Services.AddSingleton<BotAdapter>(sp => sp.GetService<CloudAdapter>());
+builder.Services.AddSingleton<TeamsAdapter, AdapterWithErrorHandler>();
+builder.Services.AddSingleton<IBotFrameworkHttpAdapter>(sp => sp.GetService<TeamsAdapter>());
+builder.Services.AddSingleton<BotAdapter>(sp => sp.GetService<TeamsAdapter>());
 
 // Create the storage to persist turn state
 builder.Services.AddSingleton<IStorage>(
