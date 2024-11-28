@@ -7,7 +7,7 @@ using Microsoft.Teams.AI;
 using Microsoft.Teams.AI.AI.Models;
 using Microsoft.Teams.AI.AI.Planners;
 using Microsoft.Teams.AI.AI.Prompts;
-using Microsoft.Teams.AI.State;
+using Custom.Engine.Agent.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +63,7 @@ builder.Services.AddTransient<IBot>(sp =>
     });
 
     // Create ActionPlanner
-    ActionPlanner<TurnState> planner = new(
+    ActionPlanner<AppState> planner = new(
         options: new(
             model: sp.GetService<OpenAIModel>(),
             prompts: prompts,
@@ -77,7 +77,7 @@ builder.Services.AddTransient<IBot>(sp =>
         loggerFactory: loggerFactory
     );
 
-    Application<TurnState> app = new ApplicationBuilder<TurnState>()
+    Application<AppState> app = new ApplicationBuilder<AppState>()
         .WithAIOptions(new(planner))
         .WithStorage(sp.GetService<IStorage>())
         .Build();
