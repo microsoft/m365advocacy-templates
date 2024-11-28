@@ -43,13 +43,13 @@ provision:
     with:
       target: ../Custom.Engine.Agent/appsettings.Development.json
       content:
+        AZURE_OPENAI_DEPLOYMENT_NAME: ${{APP_INTERNAL_NAME}}
+        AZURE_OPENAI_ENDPOINT: ${{AZURE_OPENAI_ENDPOINT}}
+        AZURE_OPENAI_KEY: ${{SECRET_AZURE_OPENAI_API_KEY}}
+        AZURE_STORAGE_BLOB_CONTAINER_NAME: state
+        AZURE_STORAGE_CONNECTION_STRING: UseDevelopmentStorage=true
         BOT_ID: ${{BOT_ID}}
         BOT_PASSWORD: ${{SECRET_BOT_PASSWORD}}
-        AZURE_OPENAI_DEPLOYMENT_NAME: ${{APP_INTERNAL_NAME}}
-        AZURE_OPENAI_KEY: ${{SECRET_AZURE_OPENAI_API_KEY}}
-        AZURE_OPENAI_ENDPOINT: ${{AZURE_OPENAI_ENDPOINT}}
-        AZURE_STORAGE_CONNECTION_STRING: UseDevelopmentStorage=true
-        AZURE_STORAGE_BLOB_CONTAINER_NAME: state
 
   - uses: teamsApp/validateManifest
     with:
