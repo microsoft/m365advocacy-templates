@@ -23,6 +23,40 @@
 1. In the opened web browser, select **Add** button to test the app in Teams </br>![image](https://raw.githubusercontent.com/microsoft/m365advocacy-templates/main/templates/dotnet-teams/content/assets/app-install.png)
 1. In the compose box, enter **Hi** and send the message. The bot returns a response.
 
+## Local development resources
+
+When you run the Prepare Teams App Dependencies process after creating the Dev Tunnel, the following resources are provisoned for local development:
+
+- Microsoft Entra app registration
+    - Used for Azure AI Bot Service identity
+- Azure AI Bot Service resource
+    - Messaging endpoint configured with active Dev Tunnel URL
+    - Microsoft Teams channel configured
+- Azure OpenAI Service resource
+    - Default deployment: gpt-4 (1106-Preview)
+
+During debugging, conversation state is stored in an emulated Azure Storage Account on your local machine, using the Azurite service which is built into Visual Studio 2022. To manage conversation state, use [Azure Storage Explorer](https://learn.microsoft.com/azure/storage/storage-explorer/vs-azure-tools-storage-explorer-blobs)
+
+## Azure resources
+
+When you [provision](https://learn.microsoft.com/microsoftteams/platform/toolkit/toolkit-v4/provision-vs) resources to Azure, the following resources are provisioned:
+
+- Microsoft Entra app registration
+    - Used for Azure AI Bot Service identity
+- Azure AI Bot Service resource
+    - Messaging endpoint configured with App Service URL
+    - Microsoft Teams channel configured
+- Azure OpenAI Service resource
+    - Default deployment: gpt-4 (1106-Preview)
+- Azure Storage Account
+    - Used for storing conversation state
+- Azure Key Vault
+    - Used to securely store client IDs and API keys
+- Azure App Service
+    - Used for hosting your agent code
+    - Properties configured using Azure Key Vault references
+
+
 ## Run the app on other platforms
 
 The Teams app can run in other platforms like Outlook and Microsoft 365 app. See https://aka.ms/vs-ttk-debug-multi-profiles for more details.
