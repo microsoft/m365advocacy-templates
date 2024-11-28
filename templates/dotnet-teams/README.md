@@ -1,7 +1,8 @@
 # Microsoft Teams templates
 
-- [Custom Engine Agent project generator](#custom-engine-agent-project-generator)
-- [Microsoft Teams message extension with search command project generator](#microsoft-teams-message-extension-with-search-command-project-generator)
+- [Custom Engine Agent project generator for Visual Studio 2022](#custom-engine-agent-project-generator)
+- [Microsoft Teams message extension with search command project generator for Visual Studio 2022](#microsoft-teams-message-extension-with-search-command-project-generator)
+
 
 ## Setup
 
@@ -13,9 +14,15 @@ dotnet new install M365Advocacy.Teams.Templates
 dotnet new uninstall M365Advocacy.Teams.Templates
 ```
 
-## Custom Engine Agent project generator
+## Custom Engine Agent project generator for Visual Studio 2022
 
 Create a new [Microsoft Teams app](https://learn.microsoft.com/MicrosoftTeams/platform/overview) project with an AI powered bot using a single command.
+
+### Prerequisisites
+
+- [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) (any edition)
+- [Teams Toolkit for Visual Studio workload](https://learn.microsoft.com/microsoftteams/platform/toolkit/toolkit-v4/install-teams-toolkit-vs#install-teams-toolkit-for-visual-studio)
+- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 
 ### Usage
 
@@ -40,7 +47,9 @@ dotnet new custom-engine-agent --name "Custom.Engine.Agent" `
     --allow-scripts Yes
 ```
 
-## Microsoft Teams message extension with search command project generator
+See [GettingStarted.md](./content/custom-engine-agent/TeamsApp/GettingStarted.md) for next steps.
+
+## Microsoft Teams message extension with search command project generator for Visual Studio 2022
 
 Create a new [Microsoft Teams app](https://learn.microsoft.com/MicrosoftTeams/platform/overview) project with a message extension containing a search command using a single command.
 
