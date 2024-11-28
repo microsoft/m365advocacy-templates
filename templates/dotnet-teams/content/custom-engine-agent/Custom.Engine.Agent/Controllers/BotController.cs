@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.Teams.AI;
 
 namespace Custom.Engine.Agent.Controllers
 {
     [Route("api/messages")]
     [ApiController]
-    public class BotController(CloudAdapter adapter, IBot bot) : ControllerBase
+    public class BotController(TeamsAdapter adapter, IBot bot) : ControllerBase
     {
-        private readonly CloudAdapter Adapter = adapter;
+        private readonly TeamsAdapter Adapter = adapter;
         private readonly IBot Bot = bot;
 
         [HttpPost]
