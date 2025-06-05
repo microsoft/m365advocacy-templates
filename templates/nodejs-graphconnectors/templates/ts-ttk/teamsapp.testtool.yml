@@ -7,12 +7,6 @@ environmentFolderPath: ./env
 
 provision:
 
-  - uses: script
-    name: Ensure tables and data
-    with:
-      run: node tables.js
-      workingDirectory: scripts
-
   - uses: file/createOrUpdateJsonFile
     with:
       target: ./local.settings.json
