@@ -1,0 +1,172 @@
+# yaml-language-server: $schema=https://aka.ms/teams-toolkit/v1.8/yaml.schema.json
+# Visit https://aka.ms/teamsfx-v5.0-guide for details on this file
+# Visit https://aka.ms/teamsfx-actions for details on actions
+version: v1.8
+
+provision:
+
+  - uses: teamsApp/create
+    with:
+      name: ${{APP_INTERNAL_NAME}}-${{APP_NAME_SUFFIX}}
+    writeToEnvironmentFile:
+      teamsAppId: TEAMS_APP_ID
+
+  - uses: aadApp/create
+    with:
+      name: ${{APP_INTERNAL_NAME}}-bot-${{APP_NAME_SUFFIX}}
+      generateClientSecret: true
+      signInAudience: AzureADMyOrg
+    writeToEnvironmentFile:
+      clientId: BOT_ID
+      clientSecret: SECRET_BOT_PASSWORD
+      objectId: BOT_OBJECT_ID
+      tenantId: BOT_TENANT_ID
+      authority: BOT_AUTHORITY
+
+  - uses: aadApp/update
+    with:
+      manifestPath: ./infra/entra/entra.bot.manifest.json
+      outputFilePath : ./infra/entra/build/entra.bot.manifest.${{TEAMSFX_ENV}}.json
+  
+  - uses: aadApp/create
+    with:
+      name: ${{APP_INTERNAL_NAME}}-graph-${{APP_NAME_SUFFIX}}
+      generateClientSecret: true
+      signInAudience: AzureADMyOrg
+    writeToEnvironmentFile:
+      clientId: GRAPH_ID
+      clientSecret: SECRET_GRAPH
+      objectId: GRAPH_OBJECT_ID
+      tenantId: GRAPH_TENANT_ID
+
+  - uses: aadApp/update
+    with:
+      manifestPath: ./infra/entra/entra.graph.manifest.json
+      outputFilePath : ./infra/entra/build/entra.graph.manifest.${{TEAMSFX_ENV}}.json
+
+  - uses: arm/deploy
+    with:
+      subscriptionId: ${{AZURE_SUBSCRIPTION_ID}}
+      resourceGroupName: ${{AZURE_RESOURCE_GROUP_NAME}}
+      templates:
+        - path: ./infra/local.azure.bicep
+          parameters: ./infra/local.azure.parameters.json
+          deploymentName: Create-resources-for-${{APP_INTERNAL_NAME}}
+      bicepCliVersion: v0.9.1
+
+  # this script will create a service principal and write the ID to env file
+  - uses: script
+    with:
+      run: |
+        $AppId = "${{BOT_ID}}"
+        $SubscriptionId = "${{AZURE_SUBSCRIPTION_ID}}"
+        $BotServicePrincipalId = "${{BOT_SERVICE_PRINCIPAL_ID}}"
+
+        # Check if service principal ID is already set and not the placeholder value
+        if ($BotServicePrincipalId -ne "_") {
+            Write-Host "Service principal ID already exists: $BotServicePrincipalId"
+            Write-Host "Skipping service principal creation."
+            exit 0
+        }
+
+        Write-Host "Logging in to Azure..."
+        az login --only-show-errors
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Azure login failed. Exiting."
+            exit 1
+        }
+
+        Write-Host "Setting subscription to $SubscriptionId..."
+        az account set --subscription $SubscriptionId
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to set subscription. Exiting."
+            exit 1
+        }
+
+        Write-Host "Checking if service principal exists for App ID: $AppId..."
+        $spExists = az ad sp list --filter "appId eq '$AppId'" --query "[].appId" -o tsv
+
+        if (![string]::IsNullOrEmpty($spExists)) {
+            Write-Host "Service principal already exists for App ID: $AppId"
+            # Get the existing service principal details
+            $spDetails = az ad sp list --filter "appId eq '$AppId'" --query "[0].{id:id, appId:appId}" -o json | ConvertFrom-Json
+            $botServicePrincipalId = $spDetails.appId
+        } else {
+            Write-Host "Creating service principal for App ID: $AppId..."
+            $spCreateResult = az ad sp create --id $AppId --output json
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "Service principal created successfully."
+                $spDetails = $spCreateResult | ConvertFrom-Json
+                $botServicePrincipalId = $spDetails.appId
+            } else {
+                Write-Error "Failed to create service principal."
+                exit 1
+            }
+        }
+
+        # Write service principal details to environment file
+        echo "::set-teamsfx-env BOT_SERVICE_PRINCIPAL_ID=$botServicePrincipalId"
+
+        Write-Host "Script completed. Service Principal ID: $botServicePrincipalId"
+      shell: pwsh
+
+  - uses: file/createOrUpdateJsonFile
+    with:
+      target: ../appsettings.Development.json
+      content:
+        AgentApplication:
+          StartTypingTimer: false
+          RemoveRecipientMention: false
+          NormalizeMentions: false
+          UserAuthorization:
+            DefaultHandlerName: me
+            AutoSignin: true
+            Handlers:
+              me:
+                Settings:
+                  AzureBotOAuthConnectionName: "Microsoft Graph"
+                  Title: "Sign in"
+                  Text: "Sign in to Microsoft Graph"
+        TokenValidation:
+          Audiences:
+            ClientId: ${{BOT_ID}}
+          TenantId: ${{BOT_TENANT_ID}}
+        Logging:
+          LogLevel:
+            Default: Information
+            Microsoft.AspNetCore: Warning
+            Microsoft.Agents: Warning
+            Microsoft.Hosting.Lifetime: Information
+        Connections:
+          BotServiceConnection:
+            Settings:
+              AuthType: ClientSecret
+              AuthorityEndpoint: ${{BOT_AUTHORITY}}
+              ClientId: ${{BOT_ID}}
+              ClientSecret: ${{SECRET_BOT_PASSWORD}}
+              Scopes:
+                - https://api.botframework.com/.default
+        BlobsStorageOptions:
+          ContainerName: state
+        LanguageModel:
+          Name: ${{LANGUAGE_MODEL_NAME}}
+          Endpoint: ${{LANGUAGE_MODEL_ENDPOINT}}
+          ApiKey: ${{SECRET_LANGUAGE_MODEL_API_KEY}}
+
+  - uses: teamsApp/validateManifest
+    with:
+      manifestPath: ./appPackage/manifest.json
+
+  - uses: teamsApp/zipAppPackage
+    with:
+      manifestPath: ./appPackage/manifest.json
+      outputZipPath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+      outputFolder: ./appPackage/build
+
+  - uses: teamsApp/validateAppPackage
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
+
+  - uses: teamsApp/update
+    with:
+      appPackagePath: ./appPackage/build/appPackage.${{TEAMSFX_ENV}}.zip
