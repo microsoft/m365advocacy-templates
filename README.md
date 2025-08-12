@@ -4,6 +4,7 @@ This repo contains project templates for different Microsoft 365 extensions. The
 
 Platform|Project templates|Description|Folder
 ---|---|---|---
+.NET|Microsoft 365 Copilot|Templates to create agents for Microsoft 365 Copilot.|[dotnet-m365-copilot](./templates/dotnet-m365-copilot/README.md)
 .NET|Microsoft Graph connectors|Templates to create a custom Microsoft Graph connector running on .NET.|[dotnet-graphconnectors](./templates/dotnet-graphconnectors/README.md)
 .NET|Microsoft Teams apps|Templates to create custom Microsoft Teams apps running on .NET|[dotnet-teams](./templates/dotnet-teams/README.md)
 Node.js|Microsoft Graph connectors|Templates to create a custom Microsoft Graph connector running on Node.js|[nodejs-graphconnectors](./templates/nodejs-graphconnectors/README.md)

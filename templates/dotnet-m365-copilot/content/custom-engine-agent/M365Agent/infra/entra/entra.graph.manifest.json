@@ -1,0 +1,37 @@
+{
+  "id": "${{GRAPH_OBJECT_ID}}",
+  "appId": "${{GRAPH_ID}}",
+  "displayName": "${{APP_INTERNAL_NAME}}-graph-${{APP_NAME_SUFFIX}}",
+  "identifierUris": [],
+  "signInAudience": "AzureADMyOrg",
+  "api": {
+    "requestedAccessTokenVersion": 2,
+    "oauth2PermissionScopes": [],
+    "preAuthorizedApplications": []
+  },
+  "info": {},
+  "optionalClaims": {},
+  "publicClient": {
+    "redirectUris": []
+  },
+  "requiredResourceAccess": [
+    {
+      "resourceAppId": "Microsoft Graph",
+      "resourceAccess": [
+        {
+          "id": "User.Read",
+          "type": "Scope"
+        }
+      ]
+    }
+  ],
+  "web": {
+    "redirectUris": [
+      "https://token.botframework.com/.auth/web/redirect"
+    ],
+    "implicitGrantSettings": {}
+  },
+  "spa": {
+    "redirectUris": []
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceBaseName": {
+      "value": "bot${{RESOURCE_SUFFIX}}"
+    },
+    "webAppSKU": {
+      "value": "B1"
+    },
+    "botDisplayName": {
+      "value": "${{APP_DISPLAY_NAME}}"
+    },
+    "graphEntraAppClientId": {
+      "value": "${{GRAPH_ID}}"
+    },
+    "graphEntraAppClientSecret": {
+      "value": "${{SECRET_GRAPH}}"
+    },
+    "graphEntraAppTenantId": {
+      "value": "${{GRAPH_TENANT_ID}}"
+    },
+    "languageModelName": {
+      "value": "${{LANGUAGE_MODEL_NAME}}"
+    },
+    "languageModelEndpoint": {
+      "value": "${{LANGUAGE_MODEL_ENDPOINT}}"
+    },
+    "languageModelApiKey": {
+      "value": "${{SECRET_LANGUAGE_MODEL_API_KEY}}"
+    }
+  }
+}

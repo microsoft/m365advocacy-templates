@@ -1,0 +1,24 @@
+{
+  "symbolInfo": {
+    "appInternalName": {
+      "longName": "internal-name",
+      "shortName": "in",
+      "description": "The internal name of the agent."
+    },
+    "appDisplayName": {
+      "longName": "display-name",
+      "shortName": "dn",
+      "description": "The display name of the agent."
+    },
+    "languageModelName": {
+      "longName": "language-model-name",
+      "shortName": "lm",
+      "description": "The name of the language model to use. If using Azure OpenAI service, use the deployment name."
+    },
+    "languageModelEndpoint": {
+      "longName": "language-model-endpoint",
+      "shortName": "lme",
+      "description": "The OpenAI API compatible endpoint for the language model."
+    }
+  }
+}

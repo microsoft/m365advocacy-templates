@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Garry Trinder",
+    "classifications": [
+        "Microsoft 365",
+        "Microsoft 365 Copilot",
+        "Microsoft 365 Agents Toolkit",
+        "Custom engine agent",
+        "CEA",
+        "Microsoft 365 Agents SDK",
+        "Copilot",
+        "AI",
+        "Agent",
+        "Web"
+    ],
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "name": "Custom engine agent",
+    "identity": "M365Advocacy.M365Copilot.CEA",
+    "shortName": "cea",
+    "sourceName": "CustomEngineAgent",
+    "preferNameDirectory": true,
+    "symbols": {
+        "appInternalName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "my-agent",
+            "replaces": "(appInternalName)"
+        },
+        "appDisplayName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "My agent",
+            "replaces": "(appDisplayName)"
+        },
+        "languageModelName": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "openai/gpt-4.1-mini",
+            "replaces": "(languageModelName)"
+        },
+        "languageModelEndpoint": {
+            "type": "parameter",
+            "datatype": "string",
+            "defaultValue": "https://models.github.ai/inference",
+            "replaces": "(languageModelEndpoint)"
+        }
+    },
+    "guids": [
+        "b069b3bd-f6bc-cc40-82ab-3fcc2ea50fdf",
+        "B069B3BD-F6BC-CC40-82AB-3FCC2EA50FDF", 
+        "A0E52601-C5AB-0604-E39D-7D71EC487C7B",
+        "3CA2C7CB-725F-48DB-971A-E852B4E88BDD"
+    ],
+    "sources": [
+        {
+            "modifiers": [
+                {
+                    "include": [
+                        "**/CustomEngineAgent.slnLaunch.user",
+                        "**/CustomEngineAgent.csproj.user",
+                        "**/M365Agent/M365Agent.atkproj.user",
+                        "**/M365Agent/env/.env.local.user",
+                        "**/M365Agent/env/.env.dev.user",
+                        "**/.gitignore",
+                        "**/.gitattributes"
+                    ]
+                }
+            ]
+        }
+    ],
+    "constraints": {
+        "dotnet-cli": {
+            "type": "host",
+            "args": [
+                {
+                    "hostname": "dotnetcli"
+                }
+            ]
+        }
+    },
+    "postActions": [
+        {
+            "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+            "args": {
+                "executable": "powershell",
+                "args": "-NoProfile -ExecutionPolicy Bypass -File scripts\\post-create.ps1"
+            },
+            "manualInstructions": [
+                {
+                    "text": "Run the post-create.ps1 script to configure multiple startup projects."
+                }
+            ],
+            "continueOnError": false
+        },
+        {
+            "description": "Manual actions required",
+            "manualInstructions": [
+                {
+                    "text": "Open the solution in Visual Studio 2022 and follow the instructions in the GettingStarted.md file."
+                }
+            ],
+            "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
+            "continueOnError": true
+        }
+    ]
+}
