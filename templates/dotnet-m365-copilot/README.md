@@ -7,7 +7,7 @@
 dotnet new install M365Advocacy.M365Copilot.Templates
 
 # uninstall templates
-dotnet new install M365Advocacy.M365Copilot.Templates
+dotnet new uninstall M365Advocacy.M365Copilot.Templates
 ```
 
 ## Custom engine agent project generator
@@ -18,7 +18,7 @@ The template supports any language model that can be accessed via an OpenAI comp
 
 ### Prerequisites
 
-- [Visual Studio 2022 17.4](https://visualstudio.microsoft.com/downloads/) (any edition)
+- [Visual Studio 2022 17.14](https://visualstudio.microsoft.com/downloads/) (any edition)
 - [Microsoft 365 Agents Toolkit workload component](https://learn.microsoft.com/microsoftteams/platform/toolkit/toolkit-v4/install-teams-toolkit-vs#install-teams-toolkit-for-visual-studio)
 - Azure subscription
 - [Azure CLI](https://aka.ms/azure-cli)
@@ -66,6 +66,8 @@ dotnet new cea `
     --language-model-endpoint "https://<azure-resource-name>.cognitiveservices.azure.com" `
     --allow-scripts Yes
 ```
+
+See [GettingStarted.md](./content/custom-engine-agent/GettingStarted.md) for next steps.
 
 #### OpenAI
 
