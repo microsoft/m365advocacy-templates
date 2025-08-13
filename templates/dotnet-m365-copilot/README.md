@@ -12,7 +12,7 @@ dotnet new uninstall M365Advocacy.M365Copilot.Templates
 
 ## Custom engine agent project generator
 
-Create a new [custom engine agent](https://learn.microsoft.com/MicrosoftTeams/platform/overview) project to extend Microsoft 365 Copilot with your own agent that uses your own language model.
+Create a new [custom engine agent](https://learn.microsoft.com/microsoft-365-copilot/extensibility/overview-custom-engine-agent) project to extend Microsoft 365 Copilot with your own agent that uses your own language model.
 
 The template supports any language model that can be accessed via an OpenAI compatible endpoint. The project uses [OpenAI client library for .NET](https://github.com/openai/openai-dotnet) to interact with the language model. If an Azure OpenAI Service endpoint is provided during setup, it will use the [Azure OpenAI client library for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/openai/Azure.AI.OpenAI/README.md) instead. Both libraries are included to provide flexibility, you may want to use a different provider during local development, i.e. GitHub Models, and then switch to Azure OpenAI Service for production.
 
@@ -50,7 +50,7 @@ dotnet new cea `
     --allow-scripts Yes
 ```
 
-See [GettingStarted.md](./content/custom-engine-agent/GettingStarted.md) for next steps.
+See [GettingStarted.md](https://github.com/microsoft/m365advocacy-templates/blob/main/templates/dotnet-m365-copilot/content/custom-engine-agent/GettingStarted.md) for next steps.
 
 #### Azure OpenAI Service
 
@@ -67,7 +67,7 @@ dotnet new cea `
     --allow-scripts Yes
 ```
 
-See [GettingStarted.md](./content/custom-engine-agent/GettingStarted.md) for next steps.
+See [GettingStarted.md](https://github.com/microsoft/m365advocacy-templates/blob/main/templates/dotnet-m365-copilot/content/custom-engine-agent/GettingStarted.md) for next steps.
 
 #### OpenAI
 
@@ -81,4 +81,4 @@ dotnet new cea `
     --allow-scripts Yes
 ```
 
-See [GettingStarted.md](./content/custom-engine-agent/GettingStarted.md) for next steps.
+See [GettingStarted.md](https://github.com/microsoft/m365advocacy-templates/blob/main/templates/dotnet-m365-copilot/content/custom-engine-agent/GettingStarted.md) for next steps.
