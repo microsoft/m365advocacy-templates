@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.22/MicrosoftTeams.schema.json",
   "manifestVersion": "1.22",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "id": "${{TEAMS_APP_ID}}",
   "developer": {
     "name": "Teams App, Inc.",
@@ -25,12 +25,12 @@
   "bots": [
     {
       "botId": "${{BOT_ID}}",
-      "scopes": [ "copilot", "personal", "team", "groupChat" ],
+      "scopes": [ "copilot" ],
       "supportsFiles": false,
       "isNotificationOnly": false,
       "commandLists": [
         {
-          "scopes": [ "copilot", "personal", "team", "groupChat" ],
+          "scopes": [ "copilot" ],
           "commands": [
             {
               "title": "Say hi to the bot",
