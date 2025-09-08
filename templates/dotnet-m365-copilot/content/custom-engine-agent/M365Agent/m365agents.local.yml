@@ -30,19 +30,19 @@ provision:
   
   - uses: aadApp/create
     with:
-      name: ${{APP_INTERNAL_NAME}}-graph-${{APP_NAME_SUFFIX}}
+      name: ${{APP_INTERNAL_NAME}}-api-${{APP_NAME_SUFFIX}}
       generateClientSecret: true
       signInAudience: AzureADMyOrg
     writeToEnvironmentFile:
-      clientId: GRAPH_ID
-      clientSecret: SECRET_GRAPH
-      objectId: GRAPH_OBJECT_ID
-      tenantId: GRAPH_TENANT_ID
+      clientId: ENTRA_API_ID
+      clientSecret: SECRET_ENTRA_API
+      objectId: ENTRA_API_OBJECT_ID
+      tenantId: ENTRA_API_TENANT_ID
 
   - uses: aadApp/update
     with:
-      manifestPath: ./infra/entra/entra.graph.manifest.json
-      outputFilePath : ./infra/entra/build/entra.graph.manifest.${{TEAMSFX_ENV}}.json
+      manifestPath: ./infra/entra/entra.api.manifest.json
+      outputFilePath : ./infra/entra/build/entra.api.manifest.${{TEAMSFX_ENV}}.json
 
   - uses: arm/deploy
     with:
@@ -124,9 +124,9 @@ provision:
             Handlers:
               me:
                 Settings:
-                  AzureBotOAuthConnectionName: "Microsoft Graph"
+                  AzureBotOAuthConnectionName: "API"
                   Title: "Sign in"
-                  Text: "Sign in to Microsoft Graph"
+                  Text: "Sign in"
         TokenValidation:
           Audiences:
             ClientId: ${{BOT_ID}}

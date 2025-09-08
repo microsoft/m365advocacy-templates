@@ -11,10 +11,10 @@ param botServiceSku string = 'F0'
 param botEntraAppClientId string
 param botEntraAppTenantId string
 param botAppDomain string
-param graphEntraAppClientId string
-param graphEntraAppTenantId string
+param apiEntraAppClientId string
+param apiEntraAppTenantId string
 @secure()
-param graphEntraAppClientSecret string
+param apiEntraAppClientSecret string
 
 resource botService 'Microsoft.BotService/botServices@2022-09-15' = {
   kind: 'azurebot'
@@ -43,24 +43,24 @@ resource botServiceMsTeamsChannel 'Microsoft.BotService/botServices/channels@202
   }
 }
 
-resource botServiceMicrosoftGraphConnection 'Microsoft.BotService/botServices/connections@2022-09-15' = {
+resource botServiceApiConnection 'Microsoft.BotService/botServices/connections@2022-09-15' = {
   parent: botService
-  name: 'Microsoft Graph'
+  name: 'API'
   location: 'global'
   properties: {
     serviceProviderDisplayName: 'Azure Active Directory v2'
     serviceProviderId: '30dd229c-58e3-4a48-bdfd-91ec48eb906c'
-    clientId: graphEntraAppClientId
-    clientSecret: graphEntraAppClientSecret
+    clientId: apiEntraAppClientId
+    clientSecret: apiEntraAppClientSecret
     scopes: 'email offline_access openid profile User.Read'
     parameters: [
       {
         key: 'tenantID'
-        value: graphEntraAppTenantId
+        value: apiEntraAppTenantId
       }
       {
         key: 'tokenExchangeUrl'
-        value: 'api://${botAppDomain}/botid-${botEntraAppClientId}'
+        value: 'api://botid-${botEntraAppClientId}'
       }
     ]
   }

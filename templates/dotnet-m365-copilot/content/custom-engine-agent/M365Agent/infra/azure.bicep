@@ -14,14 +14,14 @@ param botDisplayName string
 param location string = resourceGroup().location
 
 @description('The Graph Entra App client ID')
-param graphEntraAppClientId string
+param apiEntraAppClientId string
 
 @description('The Graph Entra App tenant ID')
-param graphEntraAppTenantId string
+param apiEntraAppTenantId string
 
 @description('The Graph Entra App client secret')
 @secure()
-param graphEntraAppClientSecret string
+param apiEntraAppClientSecret string
 
 @description('The language model name')
 param languageModelName string
@@ -73,7 +73,7 @@ module keyVaultModule 'modules/keyvault.bicep' = {
     identityPrincipalId: identityModule.outputs.identityPrincipalId
     identityId: identityModule.outputs.identityId
     logAnalyticsWorkspaceId: monitoringModule.outputs.logAnalyticsWorkspaceId
-    graphEntraAppClientSecret: graphEntraAppClientSecret
+    apiEntraAppClientSecret: apiEntraAppClientSecret
     languageModelApiKey: languageModelApiKey
     applicationInsightsConnectionString: monitoringModule.outputs.applicationInsightsConnectionString
   }
@@ -108,9 +108,9 @@ module botServiceModule 'modules/botservice.bicep' = {
     identityTenantId: identityModule.outputs.identityTenantId
     webAppDefaultHostName: webAppModule.outputs.webAppDefaultHostName
     logAnalyticsWorkspaceId: monitoringModule.outputs.logAnalyticsWorkspaceId
-    graphEntraAppClientId: graphEntraAppClientId
-    graphEntraAppTenantId: graphEntraAppTenantId
-    graphEntraAppClientSecret: graphEntraAppClientSecret
+    apiEntraAppClientId: apiEntraAppClientId
+    apiEntraAppTenantId: apiEntraAppTenantId
+    apiEntraAppClientSecret: apiEntraAppClientSecret
     applicationInsightsInstrumentationKey: monitoringModule.outputs.applicationInsightsInstrumentationKey
     applicationInsightsAppId: monitoringModule.outputs.applicationInsightsAppId
   }
