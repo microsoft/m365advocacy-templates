@@ -11,14 +11,14 @@
     "botDisplayName": {
       "value": "${{APP_DISPLAY_NAME}}"
     },
-    "graphEntraAppClientId": {
-      "value": "${{GRAPH_ID}}"
+    "apiEntraAppClientId": {
+      "value": "${{ENTRA_API_ID}}"
     },
-    "graphEntraAppClientSecret": {
-      "value": "${{SECRET_GRAPH}}"
+    "apiEntraAppClientSecret": {
+      "value": "${{SECRET_ENTRA_API}}"
     },
-    "graphEntraAppTenantId": {
-      "value": "${{GRAPH_TENANT_ID}}"
+    "apiEntraAppTenantId": {
+      "value": "${{ENTRA_API_TENANT_ID}}"
     },
     "languageModelName": {
       "value": "${{LANGUAGE_MODEL_NAME}}"

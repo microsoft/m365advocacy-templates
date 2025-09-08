@@ -137,9 +137,9 @@ resource siteConfig 'Microsoft.Web/sites/config@2024-04-01' = {
     AgentApplication__NormalizeMentions: 'false'
     AgentApplication__UserAuthorization__DefaultHandlerName: 'me'
     AgentApplication__UserAuthorization__AutoSignin: 'true'
-    AgentApplication__UserAuthorization__Handlers__me__Settings__AzureBotOAuthConnectionName: 'Microsoft Graph'
+    AgentApplication__UserAuthorization__Handlers__me__Settings__AzureBotOAuthConnectionName: 'API'
     AgentApplication__UserAuthorization__Handlers__me__Settings__Title: 'Sign in'
-    AgentApplication__UserAuthorization__Handlers__me__Settings__Text: 'Sign in to Microsoft Graph'
+    AgentApplication__UserAuthorization__Handlers__me__Settings__Text: 'Sign in'
     
     // TokenValidation settings
     TokenValidation__Audiences__ClientId: identityClientId

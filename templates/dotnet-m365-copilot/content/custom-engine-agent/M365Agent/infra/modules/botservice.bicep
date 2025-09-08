@@ -20,14 +20,14 @@ param webAppDefaultHostName string
 param logAnalyticsWorkspaceId string
 
 @description('The Graph Entra App client ID')
-param graphEntraAppClientId string
+param apiEntraAppClientId string
 
 @description('The Graph Entra App tenant ID')
-param graphEntraAppTenantId string
+param apiEntraAppTenantId string
 
 @description('The Graph Entra App client secret')
 @secure()
-param graphEntraAppClientSecret string
+param apiEntraAppClientSecret string
 
 @description('The Application Insights instrumentation key')
 param applicationInsightsInstrumentationKey string
@@ -88,20 +88,20 @@ resource botServiceMsTeamsChannel 'Microsoft.BotService/botServices/channels@202
   }
 }
 
-resource botServiceMicrosoftGraphConnection 'Microsoft.BotService/botServices/connections@2021-03-01' = {
+resource botServiceApiConnection 'Microsoft.BotService/botServices/connections@2021-03-01' = {
   parent: botService
-  name: 'Microsoft Graph'
+  name: 'API'
   location: 'global'
   properties: {
     serviceProviderDisplayName: 'Azure Active Directory v2'
     serviceProviderId: '30dd229c-58e3-4a48-bdfd-91ec48eb906c'
-    clientId: graphEntraAppClientId
-    clientSecret: graphEntraAppClientSecret
+    clientId: apiEntraAppClientId
+    clientSecret: apiEntraAppClientSecret
     scopes: 'email offline_access openid profile User.Read'
     parameters: [
       {
         key: 'tenantID'
-        value: graphEntraAppTenantId
+        value: apiEntraAppTenantId
       }
       {
         key: 'tokenExchangeUrl'

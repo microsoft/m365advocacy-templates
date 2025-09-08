@@ -15,7 +15,7 @@ param logAnalyticsWorkspaceId string
 
 @description('The Graph Entra App client secret to store in Key Vault')
 @secure()
-param graphEntraAppClientSecret string
+param apiEntraAppClientSecret string
 
 @description('The language model API key to store in Key Vault')
 @secure()
@@ -83,11 +83,11 @@ resource keyVaultDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-p
   }
 }
 
-resource graphEntraAppClientSecretVault 'Microsoft.KeyVault/vaults/secrets@2024-04-01-preview' = {
+resource apiEntraAppClientSecretVault 'Microsoft.KeyVault/vaults/secrets@2024-04-01-preview' = {
   parent: keyVault
-  name: 'graphEntraAppClientSecret'
+  name: 'apiEntraAppClientSecret'
   properties: {
-    value: graphEntraAppClientSecret
+    value: apiEntraAppClientSecret
   }
   dependsOn: [
     keyVaultSecretUserRole

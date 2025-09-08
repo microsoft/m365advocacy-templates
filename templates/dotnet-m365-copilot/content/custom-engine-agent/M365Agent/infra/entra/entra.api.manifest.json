@@ -1,7 +1,7 @@
 {
-  "id": "${{GRAPH_OBJECT_ID}}",
-  "appId": "${{GRAPH_ID}}",
-  "displayName": "${{APP_INTERNAL_NAME}}-graph-${{APP_NAME_SUFFIX}}",
+  "id": "${{ENTRA_API_OBJECT_ID}}",
+  "appId": "${{ENTRA_API_ID}}",
+  "displayName": "${{APP_INTERNAL_NAME}}-api-${{APP_NAME_SUFFIX}}",
     "identifierUris": [
     "api://botid-${{BOT_ID}}"
   ],

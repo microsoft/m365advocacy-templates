@@ -37,15 +37,15 @@ When starting a debugging session for the first time, the following resources ar
 
 - Microsoft Entra app registration for the Azure AI Bot Service
   - Client secret is generated and stored as encrypted value in the `.env.local.user` file
-  - Configured for single sign-on (SSO)
   - Service principal created
-- Microsoft Entra app registration for Microsoft Graph OAuth connection
+- Microsoft Entra app registration for API OAuth connection
+  - Configured for single sign-on (SSO)
   - Client secret is generated and stored as encrypted value in the `.env.local.user` file 
-  - User.Read permission is granted
+  - User.Read permission is granted for API
 - Azure AI Bot Service resource
   - Configured with the messaging endpoint using the active Dev Tunnel URL
   - Configured with Microsoft Teams channel
-  - Configured with Microsoft Graph OAuth connection
+  - Configured with API OAuth connection
 
 Conversation state is stored in an emulated Azure Storage Account on your local machine, using the Azurite service which is built into Visual Studio 2022. To manage conversation state, use [Azure Storage Explorer](https://azure.microsoft.com/en-gb/products/storage/storage-explorer/).
 
@@ -83,14 +83,15 @@ When provisioning resources to Azure, the following resources are created and co
 - Azure Bot Service resource
   - Configured with the messaging endpoint using the Azure App Service URL
   - Configured with Microsoft Teams channel
-  - Configured with Microsoft Graph OAuth connection
+  - Configured with API OAuth connection
   - Configured with Application Insights
 - Azure Key Vault
   - RBAC-enabled with managed identity assigned Key Vault Secrets User role
   - Integrated with Log Analytics for audit logging
-- Microsoft Entra app registration for Microsoft Graph OAuth connection
+- Microsoft Entra app registration for API OAuth connection
+  - Configured for single sign-on (SSO)
   - Client secret is generated and stored in Azure Key Vault
-  - User.Read permission is granted
+  - User.Read permission is granted for API
 - Azure Storage Account
   - Managed identity assigned Storage Blob Data Contributor role
   - Integrated with Log Analytics for diagnostics and audit logging
