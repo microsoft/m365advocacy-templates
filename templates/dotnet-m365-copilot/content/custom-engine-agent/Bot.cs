@@ -128,12 +128,19 @@ Remember: ANY time you use information from the user profile above, add [1] imme
             if (!string.IsNullOrEmpty(assistantResponseText) && assistantResponseText.Contains("[1]"))
             {
                 turnContext.StreamingResponse.EnableGeneratedByAILabel = true;
-                var citation = new Citation(
-                    $"{userProfile.JobTitle}, {userProfile.Department}, {userProfile.CompanyName}",
-                    userProfile.DisplayName,
-                    userProfile.ProfileUrl
-                );
-                turnContext.StreamingResponse.AddCitations([citation]);
+                var citation = new ClientCitation
+                {
+                    AtType = "Claim",
+                    Position = 1,
+                    Appearance = new ClientCitationAppearance
+                    {
+                        AtType = "DigitalDocument",
+                        Name = userProfile?.DisplayName ?? "User profile",
+                        Url = userProfile?.ProfileUrl ?? "https://m365.cloud.microsoft/chat",
+                        Abstract = $"{userProfile?.JobTitle}, {userProfile?.Department}, {userProfile?.CompanyName}"
+                    }
+                };
+                turnContext.StreamingResponse.Citations.Add(citation);
             }
         }
         catch (Exception ex)
